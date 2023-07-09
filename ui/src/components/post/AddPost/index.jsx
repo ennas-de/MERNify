@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { generatePath, useParams, Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import { generatePath, Link } from "react-router-dom";
 import { createPost } from "../../../redux/features/post/postActions";
 
 import "./AddPost.css";
@@ -17,24 +16,13 @@ const AddPost = () => {
   const { user } = useSelector((state) => state.auth);
   const userId = user._id;
 
-  const { status, message, error, loading } = useSelector(
-    (state) => state.post
-  );
+  const { status, message, loading } = useSelector((state) => state.post);
 
   useEffect(() => {
     if (status === "success" && message === "New post created!") {
       window.location.replace(`/dashboard/posts/${userId}`);
     }
   }, [status, message]);
-
-  useEffect(() => {
-    if (error && message !== "") {
-      toast.error(message);
-    }
-    if (status && message !== "") {
-      toast.success(message);
-    }
-  }, [error, status, message]);
 
   const handleCreatePost = (e) => {
     e.preventDefault();

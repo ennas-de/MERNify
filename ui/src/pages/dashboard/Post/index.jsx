@@ -2,23 +2,36 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { getPosts } from "../../../redux/features/post/postActions";
+import { deletePost, getPosts } from "../../../redux/features/post/postActions";
 
 import "./Post.css";
 
 const Post = () => {
+  // hooks
   const dispatch = useDispatch();
   const params = useParams();
-  const { posts, loading } = useSelector((state) => state.post);
+
+  // local state
   const [searchQuery, setSearchQuery] = useState("");
 
   const userId = params.userId;
 
-  console.log(posts);
-
   useEffect(() => {
     dispatch(getPosts({ userId, searchQuery }));
   }, [dispatch, searchQuery]);
+
+  const { posts, loading, error, status, message } = useSelector(
+    (state) => state.post
+  );
+
+  useEffect(() => {
+    if (error && message !== "") {
+      toast.error(message);
+    }
+    if (status && message !== "") {
+      toast.success(message);
+    }
+  }, [error, status, message]);
 
   const handleSearch = () => {
     dispatch(getPosts({ userId, searchQuery }))
@@ -73,10 +86,10 @@ const Post = () => {
       <hr className="mt-5" />
       {loading ? (
         <p>Loading posts...</p>
-      ) : posts.length < 1 ? (
-        <p>No posts found.</p>
+      ) : posts.length === 0 ? (
+        <p className="mt-4">No posts found.</p>
       ) : (
-        posts.length >= 1 &&
+        // <p>posts</p>
         posts.map((post) => (
           <div key={post._id} className="mt-5 pb-5">
             <div className="mt-2">
