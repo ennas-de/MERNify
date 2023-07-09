@@ -6,9 +6,8 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
-    <div className="mt-9">
-      <hr />
-      <p className="mt-4">Footer</p>
+    <div className="footer">
+      <p>Footer</p>
       <br />
       <h6>&copy; MERNify {currentYear}</h6>
     </div>

@@ -1,0 +1,20 @@
+/* Footer.css */
+.footer {
+  background-color: #f9fafb; /* Similar to navbar, slightly lighter */
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.footer p {
+  margin-top: 1rem;
+  color: #555;
+}
+
+.footer h6 {
+  margin-top: 1rem;
+  color: #555;
+}
