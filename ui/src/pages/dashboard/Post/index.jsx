@@ -64,29 +64,6 @@ const Post = () => {
     setSearchQuery(e.target.value);
   };
 
-  // const handleDeletePost = (postId) => {
-  //   dispatch(deletePost(postId))
-  //     .unwrap()
-  //     .then((deletedPostId) => {
-  //       console.log("Post deleted:", deletedPostId);
-  //       toast.success("Post deleted");
-
-  //       // Fetch the updated posts after successful deletion
-  //       dispatch(getPosts({ userId, searchQuery }))
-  //         .unwrap()
-  //         .then(() => {
-  //           console.log("Posts fetched");
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error fetching posts:", error);
-  //         });
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error deleting post:", error);
-  //       // Handle error if delete request fails
-  //     });
-  // };
-
   const handleDeletePost = (postId) => {
     dispatch(deletePost(postId))
       .unwrap()

@@ -86,10 +86,12 @@ const Login = () => {
 
   return (
     <div>
+      <h2 className="heading">Login</h2>
       <form onSubmit={handleLogin} className="mt-9">
         <input
           type="text"
           value={loginDetail}
+          className="input"
           placeholder="username or email..."
           onChange={(e) => setLoginDetail(e.target.value)}
         />
@@ -98,12 +100,13 @@ const Login = () => {
         <input
           type="password"
           value={password}
+          className="input"
           placeholder="password..."
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
 
-        <button>Login</button>
+        <button className="button">Login</button>
       </form>
       <p className="mt-2">
         No yet a member? <Link to="/user/register">Register</Link>

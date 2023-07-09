@@ -71,10 +71,12 @@ const Register = () => {
 
   return (
     <div>
+      <h2 className="heading">Register</h2>
       <form onSubmit={handleRegister} className="mt-9">
         <input
           type="text"
           value={firstname}
+          className="input"
           placeholder="firstname..."
           name={firstname}
           onChange={(e) => setFirstname(e.target.value)}
@@ -84,6 +86,7 @@ const Register = () => {
         <input
           type="text"
           value={lastname}
+          className="input"
           placeholder="lastname..."
           name={lastname}
           onChange={(e) => setLastname(e.target.value)}
@@ -93,6 +96,7 @@ const Register = () => {
         <input
           type="text"
           value={username}
+          className="input"
           placeholder="username..."
           name={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -102,6 +106,7 @@ const Register = () => {
         <input
           type="email"
           value={email}
+          className="input"
           placeholder="email..."
           name={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -111,6 +116,7 @@ const Register = () => {
         <input
           type="password"
           value={password}
+          className="input"
           placeholder="password..."
           name={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -120,13 +126,14 @@ const Register = () => {
         <input
           type="password"
           value={confirmPassword}
-          placeholder="confirmPassword..."
+          className="input"
+          placeholder="confirm password..."
           name={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <br />
 
-        <button className="mt-2">Register</button>
+        <button className="button">Register</button>
       </form>
       <p className="mt-2">
         Already a member? <Link to="/user/login">Login</Link>

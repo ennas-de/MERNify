@@ -136,7 +136,6 @@ export const deletePost = createAsyncThunk(
     try {
       const { auth, post } = getState();
       const userId = auth.user._id;
-      // const searchQuery = ""; // Add the searchQuery parameter here
 
       const config = {
         headers: {
@@ -149,9 +148,6 @@ export const deletePost = createAsyncThunk(
         `${API}/posts/${userId}/${postId}`,
         config
       );
-
-      // // Manually dispatch the getPosts action to fetch the updated post list
-      // await dispatch(getPosts({ userId, searchQuery }));
 
       // Update the local state or dispatch the action to update the post list
       const updatedPosts = post.posts.filter((p) => p._id !== postId);
@@ -190,8 +186,6 @@ export const deletePosts = createAsyncThunk(
       };
 
       const response = await axios.delete(`${API}/post/`, config);
-
-      //   const { user} = response.data;
 
       return response.data;
     } catch (error) {

@@ -1,8 +1,6 @@
 // App.jsx
-
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast"; //toast.success/error
-import "./App.css";
 import Auth from "./layouts/auth";
 import Dashboard from "./layouts/dashboard";
 
@@ -16,42 +14,46 @@ import Post from "./pages/dashboard/Post";
 import EditPost from "./components/post/EditPost";
 import AddPost from "./components/post/AddPOst";
 
+import "./App.css";
+
 function App() {
   return (
-    <>
-      <Toaster />
-      <Routes>
-        <Route
-          path="/dashboard/*"
-          element={
-            <ProtectedRoutes>
-              <Dashboard />
-            </ProtectedRoutes>
-          }>
-          <Route path="" element={<Home />} />
-          <Route path="profile/:userId" element={<Profile />} />
-          <Route path="profile/edit" element={<EditProfile />} />
-          <Route path="posts/:userId" element={<Post />} />
-          <Route path="posts/edit/:postId" element={<EditPost />} />
-          <Route path="posts/add" element={<AddPost />} />
-        </Route>
+    <div className="page-container">
+      <div className="content">
+        <Toaster />
+        <Routes>
+          <Route
+            path="/dashboard/*"
+            element={
+              <ProtectedRoutes>
+                <Dashboard />
+              </ProtectedRoutes>
+            }>
+            <Route path="" element={<Home />} />
+            <Route path="profile/:userId" element={<Profile />} />
+            <Route path="profile/edit" element={<EditProfile />} />
+            <Route path="posts/:userId" element={<Post />} />
+            <Route path="posts/edit/:postId" element={<EditPost />} />
+            <Route path="posts/add" element={<AddPost />} />
+          </Route>
 
-        <Route path="/user/*" element={<Auth />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Route>
+          <Route path="/user/*" element={<Auth />}>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Route>
 
-        <Route
-          path="*"
-          element={
-            <ProtectedRoutes>
-              <Dashboard />
-            </ProtectedRoutes>
-          }>
-          <Route path="" element={<Home />} />
-        </Route>
-      </Routes>
-    </>
+          <Route
+            path="*"
+            element={
+              <ProtectedRoutes>
+                <Dashboard />
+              </ProtectedRoutes>
+            }>
+            <Route path="" element={<Home />} />
+          </Route>
+        </Routes>
+      </div>
+    </div>
   );
 }
 

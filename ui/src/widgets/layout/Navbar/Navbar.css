@@ -1,8 +1,45 @@
-ul {
-  padding: 0;
+/* Navbar Styles */
+.navbar ul {
+  display: flex;
+  list-style: none;
   margin: 0;
+  padding: 0;
 }
 
-li {
-  list-style: none; /* Remove the default bullet points */
+.navbar ul li {
+  margin-right: 1rem; /* Add margin-right for spacing */
+}
+
+.navbar ul li:last-child {
+  margin-right: 0; /* Remove margin-right from the last child */
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  background-color: #e2e8f0; /* Add background color on hover */
+  color: #555; /* Change text color on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+  }
+
+  .navbar ul li {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .navbar ul li a {
+    display: block;
+    padding: 0.5rem 0;
+  }
 }
