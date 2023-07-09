@@ -42,6 +42,7 @@ export const getPosts = asyncHandler(async (req, res, next) => {
     const { q } = req.query;
 
     let posts = await PostModel.find({ user: userId });
+
     if (posts.length < 1)
       return res.status(404).json({
         status: "failed",
@@ -186,7 +187,7 @@ export const deletePost = asyncHandler(async (req, res, next) => {
       });
 
     try {
-      await PostModel.findByIdAndDelete({ _id: postId, user: userId });
+      await PostModel.findByIdAndDelete(postId);
 
       res.status(200).json({
         status: "success",
