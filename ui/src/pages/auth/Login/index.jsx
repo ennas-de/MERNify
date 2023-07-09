@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
 import {
@@ -15,6 +15,8 @@ import "./Login.css";
 const Login = () => {
   // hooks
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // local state
   const [loginDetail, setLoginDetail] = useState("");
   const [password, setPassword] = useState("");
