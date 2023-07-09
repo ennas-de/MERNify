@@ -69,7 +69,7 @@ const EditProfile = () => {
           <p>Loading profile...</p>
         </div>
       ) : (
-        <div>
+        <div className="mt-9">
           <form onSubmit={handleUpdateUser}>
             <input
               type="text"
@@ -77,29 +77,32 @@ const EditProfile = () => {
               value={firstname}
               onChange={(e) => setFirstname(e.target.value)}
             />
+            <br />
             <input
               type="text"
               name="lastname"
               value={lastname}
               onChange={(e) => setLastname(e.target.value)}
             />
+            <br />
             <input
               type="text"
               name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
+            <br />
             <input
               type="email"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-
-            <button>Update Profile</button>
+            <br />
+            <button className="mt-3">Update Profile</button>
           </form>
           <div className="mt-9">
-            <Link to={profilePath}>Profile</Link>
+            <Link to={profilePath}>Back to Profile</Link>
           </div>
         </div>
       )}

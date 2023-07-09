@@ -14,6 +14,8 @@ const Post = () => {
 
   const userId = params.userId;
 
+  console.log(posts);
+
   useEffect(() => {
     dispatch(getPosts({ userId, searchQuery }));
   }, [dispatch, searchQuery]);
@@ -71,9 +73,10 @@ const Post = () => {
       <hr className="mt-5" />
       {loading ? (
         <p>Loading posts...</p>
-      ) : posts.length === 0 ? (
+      ) : posts.length < 1 ? (
         <p>No posts found.</p>
       ) : (
+        posts.length >= 1 &&
         posts.map((post) => (
           <div key={post._id} className="mt-5 pb-5">
             <div className="mt-2">
