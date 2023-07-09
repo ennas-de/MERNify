@@ -63,7 +63,7 @@ const EditPost = () => {
         </div>
       ) : (
         <div>
-          <h2>EditPost Component</h2>
+          <h2 className="heading">Edit Post</h2>
           {post && (
             <div>
               <form
@@ -74,6 +74,7 @@ const EditPost = () => {
                   type="text"
                   name="title"
                   value={title}
+                  className="input"
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <br />
@@ -81,11 +82,12 @@ const EditPost = () => {
                   type="text"
                   name="body"
                   value={body}
+                  className="input"
                   onChange={(e) => setBody(e.target.value)}
                 />
                 <br />
 
-                <button className="mt-2">Update Post</button>
+                <button className="button">Update Post</button>
               </form>
               <div className="mt-9">
                 <Link to={`${postPath}/${userId}`}>Posts</Link>

@@ -42,7 +42,7 @@ const AddPost = () => {
         </div>
       ) : (
         <div>
-          <h2>EditPost Component</h2>
+          <h2 className="heading">Add New Post</h2>
 
           <div>
             <form
@@ -53,6 +53,7 @@ const AddPost = () => {
                 type="text"
                 name="title"
                 value={title}
+                className="input"
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter a title..."
               />
@@ -61,12 +62,13 @@ const AddPost = () => {
                 type="text"
                 name="body"
                 value={body}
+                className="input"
                 onChange={(e) => setBody(e.target.value)}
                 placeholder="Enter some contents..."
               />
               <br />
 
-              <button className="mt-3">Create Post</button>
+              <button className="button">Create Post</button>
             </form>
             <div className="mt-9">
               <Link to={`${postPath}/${userId}`}>Posts</Link>

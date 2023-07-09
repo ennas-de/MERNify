@@ -25,8 +25,8 @@ const Profile = () => {
   // fetch new profile data
   const { userProfile, loading, error } = useSelector((state) => state.user);
 
-  const handleDeleteProfile = async () => {
-    await dispatch(deleteUser());
+  const handleDeleteProfile = () => {
+    dispatch(deleteUser());
     dispatch(logout());
   };
 
@@ -40,7 +40,7 @@ const Profile = () => {
         </div>
       ) : (
         <div>
-          <h2>Profile Component</h2>
+          <h2 className="heading">Profile Component</h2>
           {userProfile && (
             <div key={userProfile._id} className="mt-2">
               <h3>Firstname: {userProfile.firstname}</h3>
@@ -51,8 +51,10 @@ const Profile = () => {
             </div>
           )}
           <div className="mt-9">
-            <Link to={dynamicPath}>EditProfile</Link>
-            <button className="pl-2" onClick={handleDeleteProfile}>
+            <Link className="button" to={dynamicPath}>
+              EditProfile
+            </Link>
+            <button className="button" onClick={handleDeleteProfile}>
               DeleteProfile
             </button>
           </div>

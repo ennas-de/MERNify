@@ -100,17 +100,22 @@ const Post = () => {
 
   return (
     <div>
-      <h2 className="mb-3">Post Component</h2>
+      <h2 className="heading">Post Component</h2>
       <div className="mb-4">
         <input
           type="text"
           placeholder="Search..."
           value={searchQuery}
+          className="input"
           onChange={handleInputChange}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className="button" onClick={handleSearch}>
+          Search
+        </button>
       </div>
-      <Link to="/dashboard/posts/add">Add New Post</Link>
+      <Link className="button" to="/dashboard/posts/add">
+        Add New Post
+      </Link>
       <hr className="mt-5" />
       {loading ? (
         <p>Loading posts...</p>
@@ -127,9 +132,11 @@ const Post = () => {
               <p>Posted Date: {formatPostedDate(post.createdAt)}</p>
             </div>
             <div className="mt-3 mb-3">
-              <Link to={`/dashboard/posts/edit/${post._id}`}>Edit Post</Link>
+              <Link className="button" to={`/dashboard/posts/edit/${post._id}`}>
+                Edit Post
+              </Link>
               <button
-                className="pl-2"
+                className="button"
                 onClick={() => handleDeletePost(post._id)}>
                 Delete Post
               </button>

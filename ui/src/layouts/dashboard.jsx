@@ -8,11 +8,9 @@ import {
   fetchUserProfile,
 } from "../redux/features/auth/authActions";
 import routes from "../utils/routes";
-// import { logout } from "../redux/features/auth/authSlice";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-
   const { user, accessToken } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -28,12 +26,17 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Navbar routes={dashRoutes} />
+      <header className="topnav">
+        <Navbar routes={dashRoutes} />
+      </header>
 
-      <div className="mt-9">
+      <main className="content">
         <Outlet />
-      </div>
-      <Footer />
+      </main>
+
+      <footer className="footer">
+        <Footer />
+      </footer>
     </div>
   );
 };

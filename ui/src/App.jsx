@@ -18,8 +18,8 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="page-container">
-      <div className="content">
+    <div className="App">
+      <div className="body">
         <Toaster />
         <Routes>
           <Route

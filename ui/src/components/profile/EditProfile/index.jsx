@@ -65,11 +65,13 @@ const EditProfile = () => {
         </div>
       ) : (
         <div className="mt-9">
+          <h2 className="heading">Update your details</h2>
           <form onSubmit={handleUpdateUser}>
             <input
               type="text"
               name="firstname"
               value={firstname}
+              className="input"
               onChange={(e) => setFirstname(e.target.value)}
             />
             <br />
@@ -77,6 +79,7 @@ const EditProfile = () => {
               type="text"
               name="lastname"
               value={lastname}
+              className="input"
               onChange={(e) => setLastname(e.target.value)}
             />
             <br />
@@ -84,6 +87,7 @@ const EditProfile = () => {
               type="text"
               name="username"
               value={username}
+              className="input"
               onChange={(e) => setUsername(e.target.value)}
             />
             <br />
@@ -91,10 +95,11 @@ const EditProfile = () => {
               type="email"
               name="email"
               value={email}
+              className="input"
               onChange={(e) => setEmail(e.target.value)}
             />
             <br />
-            <button className="mt-3">Update Profile</button>
+            <button className="button">Update Profile</button>
           </form>
           <div className="mt-9">
             <Link to={profilePath}>Back to Profile</Link>
