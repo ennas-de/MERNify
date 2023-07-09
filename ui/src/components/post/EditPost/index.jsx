@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { generatePath, useParams, Link } from "react-router-dom";
-import toast from "react-hot-toast";
 import { updatePost, getPost } from "../../../redux/features/post/postActions";
 
 import "./EditPost.css";
@@ -38,15 +37,6 @@ const EditPost = () => {
       window.location.replace(`/dashboard/posts/${userId}`);
     }
   }, [status, message]);
-
-  useEffect(() => {
-    if (error && message !== "") {
-      toast.error(message);
-    }
-    if (status && message !== "") {
-      toast.success(message);
-    }
-  }, [error, status, message]);
 
   useEffect(() => {
     if (post) {

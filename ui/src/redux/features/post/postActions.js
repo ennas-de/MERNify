@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../api/api";
 import axios from "axios";
+import { updatePostList } from "./postSlice";
 
 // Thunk action to handle fetching Post data
 export const getPost = createAsyncThunk(
@@ -37,6 +38,8 @@ export const getPosts = createAsyncThunk(
     try {
       const { auth } = getState();
       const { userId, searchQuery } = payload;
+
+      console.log(userId);
 
       const config = {
         headers: {
@@ -131,8 +134,9 @@ export const deletePost = createAsyncThunk(
   "post/deletePost",
   async (postId, { getState, dispatch, rejectWithValue }) => {
     try {
-      const { auth } = getState();
+      const { auth, post } = getState();
       const userId = auth.user._id;
+      // const searchQuery = ""; // Add the searchQuery parameter here
 
       const config = {
         headers: {
@@ -141,16 +145,33 @@ export const deletePost = createAsyncThunk(
         },
       };
 
-      await axios.delete(`${API}/posts/${userId}/${postId}`, config);
+      const response = await axios.delete(
+        `${API}/posts/${userId}/${postId}`,
+        config
+      );
 
-      // Manually dispatch the getPosts action to fetch the updated post list
-      await dispatch(getPosts(userId));
+      // // Manually dispatch the getPosts action to fetch the updated post list
+      // await dispatch(getPosts({ userId, searchQuery }));
 
-      return postId; // Return the postId to handle the fulfilled state
+      // Update the local state or dispatch the action to update the post list
+      const updatedPosts = post.posts.filter((p) => p._id !== postId);
+      dispatch(updatePostList(updatedPosts));
+
+      return response;
     } catch (error) {
       console.log(error.response.data);
       return rejectWithValue(error.response.data);
     }
+  },
+  {
+    rejectValue: (error) => {
+      console.log(error);
+      if (error.message) {
+        return error.message;
+      } else {
+        return "Something went wrong.";
+      }
+    },
   }
 );
 

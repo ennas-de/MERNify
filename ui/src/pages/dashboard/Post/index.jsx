@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { deletePost, getPosts } from "../../../redux/features/post/postActions";
+import { clearMessage } from "../../../redux/features/auth/authSlice";
 
 import "./Post.css";
 
@@ -18,20 +19,33 @@ const Post = () => {
 
   useEffect(() => {
     dispatch(getPosts({ userId, searchQuery }));
-  }, [dispatch, searchQuery]);
+  }, [dispatch, userId, searchQuery]);
 
   const { posts, loading, error, status, message } = useSelector(
     (state) => state.post
   );
 
+  // display notifications depending on the type (success or failure)
   useEffect(() => {
-    if (error && message !== "") {
+    if (error && message && status === "failed" && message !== "No posts yet") {
       toast.error(message);
-    }
-    if (status && message !== "") {
+    } else if (
+      !error &&
+      message === "Registration successful" &&
+      status === "successful"
+    ) {
       toast.success(message);
+      const hasRedirected = localStorage.getItem("hasRedirected");
+      if (!hasRedirected) {
+        navigate("/user/login");
+        localStorage.setItem("hasRedirected", true);
+      }
     }
-  }, [error, status, message]);
+
+    return () => {
+      dispatch(clearMessage());
+    };
+  }, [dispatch, error, status, message]);
 
   const handleSearch = () => {
     dispatch(getPosts({ userId, searchQuery }))
@@ -50,15 +64,52 @@ const Post = () => {
     setSearchQuery(e.target.value);
   };
 
+  // const handleDeletePost = (postId) => {
+  //   dispatch(deletePost(postId))
+  //     .unwrap()
+  //     .then((deletedPostId) => {
+  //       console.log("Post deleted:", deletedPostId);
+  //       toast.success("Post deleted");
+
+  //       // Fetch the updated posts after successful deletion
+  //       dispatch(getPosts({ userId, searchQuery }))
+  //         .unwrap()
+  //         .then(() => {
+  //           console.log("Posts fetched");
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error fetching posts:", error);
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error deleting post:", error);
+  //       // Handle error if delete request fails
+  //     });
+  // };
+
   const handleDeletePost = (postId) => {
     dispatch(deletePost(postId))
       .unwrap()
       .then((deletedPostId) => {
         console.log("Post deleted:", deletedPostId);
         toast.success("Post deleted");
+
+        // Fetch the updated posts after successful deletion
+        dispatch(getPosts({ userId, searchQuery }))
+          .unwrap()
+          .then(() => {
+            console.log("Posts fetched");
+          })
+          .catch((error) => {
+            console.error("Error fetching posts:", error);
+          });
       })
       .catch((error) => {
-        console.error("Error deleting post:", error);
+        if (error.payload) {
+          console.error("Error deleting post:", error.payload);
+        } else {
+          console.error("Error deleting post:", error);
+        }
         // Handle error if delete request fails
       });
   };

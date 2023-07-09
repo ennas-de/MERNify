@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { registerUser } from "../../../redux/features/auth/authActions";
+import { clearMessage } from "../../../redux/features/auth/authSlice";
 
 import "./Register.css";
 
@@ -24,10 +25,6 @@ const Register = () => {
     (state) => state.auth
   );
 
-  // page redirects depending on user presence
-  const access_token = localStorage.getItem("accessToken");
-  const refresh_token = localStorage.getItem("refreshToken");
-
   // display notifications depending on the type (success or failure)
   useEffect(() => {
     if (error && message && status === "failed") {
@@ -38,22 +35,21 @@ const Register = () => {
       status === "successful"
     ) {
       toast.success(message);
-      navigate("/user/login");
+      const hasRedirected = localStorage.getItem("hasRedirected");
+      if (!hasRedirected) {
+        navigate("/user/login");
+        localStorage.setItem("hasRedirected", true);
+      }
     }
-  }, [error, status, message]);
+
+    return () => {
+      dispatch(clearMessage());
+    };
+  }, [dispatch, error, status, message]);
 
   // form function
   const handleRegister = async (e) => {
     e.preventDefault();
-
-    console.log({
-      firstname,
-      lastname,
-      username,
-      email,
-      password,
-      confirmPassword,
-    });
 
     try {
       dispatch(

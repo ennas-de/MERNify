@@ -28,7 +28,11 @@ const updatedInitialState = {
 const postSlice = createSlice({
   name: "user",
   initialState: updatedInitialState,
-  reducers: {},
+  reducers: {
+    updatePostList: (state, action) => {
+      state.posts = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getPost.pending, (state) => {
@@ -111,7 +115,6 @@ const postSlice = createSlice({
       .addCase(deletePost.fulfilled, (state, action) => {
         state.loading = false;
         state.error = false;
-        state.posts = [...state.posts];
         state.status = action.payload.status;
         state.message = action.payload.message;
       })
@@ -142,6 +145,6 @@ const postSlice = createSlice({
   },
 });
 
-export const { clearMessage } = postSlice.actions;
+export const { updatePostList } = postSlice.actions;
 
 export default postSlice.reducer;

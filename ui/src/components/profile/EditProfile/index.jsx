@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
 import { getUser, updateUser } from "../../../redux/features/user/userActions";
-import { Link, generatePath, useNavigate } from "react-router-dom";
+import { Link, generatePath } from "react-router-dom";
 
 import "./EditProfile.css";
 
 const EditProfile = () => {
   // hooks
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // local state
   const [firstname, setFirstname] = useState("");
@@ -41,9 +39,6 @@ const EditProfile = () => {
   }, [status, message]);
 
   useEffect(() => {
-    if (error) {
-      toast.error(message);
-    }
     if (userProfile) {
       setFirstname(userProfile.firstname);
       setLastname(userProfile.lastname);

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
 import toast from "react-hot-toast";
 import {
   fetchAccessToken,
@@ -9,6 +8,7 @@ import {
   loginUser,
 } from "../../../redux/features/auth/authActions";
 import { getAccessToken, getRefreshToken } from "../../../utils/token.utils";
+import { clearMessage } from "../../../redux/features/auth/authSlice";
 
 import "./Login.css";
 
@@ -57,13 +57,21 @@ const Login = () => {
       toast.error(message);
     } else if (
       !error &&
-      message === "Login successful" &&
+      message === "Registration successful" &&
       status === "successful"
     ) {
       toast.success(message);
-      navigate("/");
+      const hasRedirected = localStorage.getItem("hasRedirected");
+      if (!hasRedirected) {
+        navigate("/user/login");
+        localStorage.setItem("hasRedirected", true);
+      }
     }
-  }, [error, status, message, navigate]);
+
+    return () => {
+      dispatch(clearMessage());
+    };
+  }, [dispatch, error, status, message]);
 
   // form function
   const handleLogin = async (e) => {
