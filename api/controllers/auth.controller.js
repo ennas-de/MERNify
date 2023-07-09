@@ -15,7 +15,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     const { firstname, lastname, username, email, password, confirmPassword } =
       req.body;
 
-    validate
+    // validate registration details
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
