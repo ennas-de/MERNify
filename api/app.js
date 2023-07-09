@@ -1,6 +1,5 @@
 // app.js
 import express from "express";
-import mongoose from "mongoose";
 import responseTime from "response-time";
 import cors from "cors";
 import xss from "xss-clean";

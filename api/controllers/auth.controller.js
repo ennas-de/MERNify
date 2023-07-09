@@ -1,6 +1,5 @@
 // controllers/authController.js
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 import asyncHandler from "express-async-handler";
 
@@ -16,14 +15,14 @@ const registerUser = asyncHandler(async (req, res, next) => {
     const { firstname, lastname, username, email, password, confirmPassword } =
       req.body;
 
-    // validate
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   return res.status(400).json({
-    //     status: "failed",
-    //     message: errors.array(),
-    //   });
-    // }
+    validate
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        status: "failed",
+        message: errors.array(),
+      });
+    }
     // console.log(errors);
 
     if (
