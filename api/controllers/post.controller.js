@@ -43,7 +43,7 @@ export const getPosts = asyncHandler(async (req, res, next) => {
 
     let posts = await PostModel.find({ user: userId });
     if (posts.length < 1)
-      return res.status(200).json({
+      return res.status(404).json({
         status: "failed",
         message: "No posts yet",
       });
