@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { registerUser } from "../../../redux/features/auth/authActions";
@@ -9,6 +9,7 @@ import "./Register.css";
 const Register = () => {
   // hooks
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // local state ( firstname, lastname, username, email, password, confirmPassword)
   const [firstname, setFirstname] = useState("");
