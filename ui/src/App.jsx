@@ -11,10 +11,10 @@ import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Home from "./pages/dashboard/Home";
 import Profile from "./pages/dashboard/Profile";
-import EditProfile from "./components/profile/Edit";
+import EditProfile from "./components/profile/EditProfile";
 import Post from "./pages/dashboard/Post";
-import EditPost from "./components/post/Edit";
-import AddPost from "./components/post/Add";
+import EditPost from "./components/post/EditPost";
+import AddPost from "./components/post/AddPOst";
 
 function App() {
   return (
