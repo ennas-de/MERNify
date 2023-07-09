@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "MERNify app - A MERN stack starter template for full stack (back end, and front end) web developers",
   "main": "app.js",
   "type": "module",
   "scripts": {
