@@ -1,58 +1,82 @@
-// App.jsx
+// app.js
+import express from "express";
+import responseTime from "response-time";
+import cors from "cors";
+import xss from "xss-clean";
+import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
+import morgan from "morgan";
+import colors from "colors";
+import dotenv from "dotenv";
 
-import { Routes, Route } from "react-router-dom";
-import { Toaster } from "react-hot-toast"; //toast.success/error
-import "./App.css";
-import Auth from "./layouts/auth";
-import Dashboard from "./layouts/dashboard";
+// Import Logs and Metrics
+// Local Logger
+import localLogger from "./utils/localLogger.js";
+import { restResponseTimeHistogram } from "./utils/localMetrics.js";
 
-import ProtectedRoutes from "./utils/routing/ProtectedRoutes";
-import Register from "./pages/auth/Register";
-import Login from "./pages/auth/Login";
-import Home from "./pages/dashboard/Home";
-import Profile from "./pages/dashboard/Profile";
-import EditProfile from "./components/profile/EditProfile";
-import Post from "./pages/dashboard/Post";
-import EditPost from "./components/post/EditPost";
-import AddPost from "./components/post/AddPOst";
+// require Routes //
+import Routes from "./routes/index.js";
 
-function App() {
-  return (
-    <>
-      <Toaster />
-      <Routes>
-        <Route
-          path="/dashboard/*"
-          element={
-            <ProtectedRoutes>
-              <Dashboard />
-            </ProtectedRoutes>
-          }>
-          <Route path="" element={<Home />} />
-          <Route path="profile/:userId" element={<Profile />} />
-          <Route path="profile/edit" element={<EditProfile />} />
-          <Route path="posts/:userId" element={<Post />} />
-          <Route path="posts/edit/:postId" element={<EditPost />} />
-          <Route path="posts/add" element={<AddPost />} />
-        </Route>
+// Configure environment variables //
+dotenv.config();
 
-        <Route path="/user/*" element={<Auth />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Route>
+const app = express();
 
-        <Route
-          path="*"
-          element={
-            <ProtectedRoutes>
-              <Dashboard />
-            </ProtectedRoutes>
-          }>
-          <Route path="" element={<Home />} />
-        </Route>
-      </Routes>
-    </>
-  );
-}
+// Configure App level Middleware
+app.use(cors());
+app.use(express.json());
+app.use(helmet());
+app.use(xss());
+app.use(mongoSanitize());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(morgan("dev"));
 
-export default App;
+//
+app.use(
+  responseTime((req, res, time) => {
+    if (req?.route?.path) {
+      restResponseTimeHistogram.observe(
+        {
+          method: req.method,
+          route: req.route.path,
+          status_code: req.statusCode,
+        },
+        time * 1000
+      );
+    }
+  })
+);
+
+// Configure Routes //
+app.use("/api/", Routes);
+
+// elk stack metrics route
+app.get("/metrics", async (req, res) => {
+  try {
+    res.set("Content-Type", register.contentType);
+    res.end(await register.metrics());
+  } catch (error) {
+    localLogger.error(error.message);
+  }
+});
+
+// catch all routes error
+app.use("*", (req, res) => {
+  res.status(400).json({
+    status: "failed",
+    message: "Page not found.",
+  });
+});
+
+// Error handling middleware //
+app.use((err, req, res, next) => {
+  localLogger.info(err.stack);
+  res.status(500).json({
+    status: "failed",
+    message: "Something went wrong",
+    error: err.message,
+  });
+});
+
+export default app;
