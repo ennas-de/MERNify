@@ -37,7 +37,8 @@ const Register = () => {
       toast.success(message);
       const hasRedirected = localStorage.getItem("hasRedirected");
       if (!hasRedirected) {
-        navigate("/user/login");
+        window.location.replace("/user/login");
+        // navigate("/user/login");  // not working, why?
         localStorage.setItem("hasRedirected", true);
       }
     }

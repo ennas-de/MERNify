@@ -33,7 +33,11 @@ const Login = () => {
   // default functions
   useEffect(() => {
     if (user) {
-      navigate("/dashboard");
+      const hasRedirected = localStorage.getItem("hasRedirected");
+      if (!hasRedirected) {
+        navigate("/dashboard");
+        localStorage.setItem("hasRedirected", true);
+      }
     } else {
       // check if user tokens are in localStorage
       access_token = getAccessToken();
@@ -55,17 +59,6 @@ const Login = () => {
   useEffect(() => {
     if (error && message && status === "failed") {
       toast.error(message);
-    } else if (
-      !error &&
-      message === "Registration successful" &&
-      status === "successful"
-    ) {
-      toast.success(message);
-      const hasRedirected = localStorage.getItem("hasRedirected");
-      if (!hasRedirected) {
-        navigate("/user/login");
-        localStorage.setItem("hasRedirected", true);
-      }
     }
 
     return () => {
