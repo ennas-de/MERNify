@@ -1,8 +1,10 @@
 # Mernify
 
+## Description
 Mernify is a self-hosted platform that aims to speed up development, facilitate learning for junior and new developers, and provide a standardized coding template for MERN (MongoDB, Express.js, React.js, Node.js) stack applications.
 
-## Live Url: https://mernify.netlify.app/
+## Live Url 
+Website: https://mernify.netlify.app/
 
 ## Key Features
 
