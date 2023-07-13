@@ -2,6 +2,8 @@
 
 Mernify is a self-hosted platform that aims to speed up development, facilitate learning for junior and new developers, and provide a standardized coding template for MERN (MongoDB, Express.js, React.js, Node.js) stack applications.
 
+## Live Url: https://mernify.netlify.app/
+
 ## Key Features
 
 - **Accelerated Development**: Get started quickly with pre-configured MERN stack boilerplate templates.
@@ -42,7 +44,7 @@ To install and run Mernify locally, follow these steps:
 4. Install the dependencies: `npm install`
 5. Set up the environment variables:
    - Rename `.env.example` to `.env` and update the values with your configuration.
-6. Run the application: `npm start`
+6. Run the applications: `npm run dev`
 7. Happy Creating!
 
 For detailed usage instructions, refer to the [official documentation](https://mernify.netlify.app/docs).
