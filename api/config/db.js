@@ -10,7 +10,7 @@ const connectDB = async () => {
     const conn = await mongoose.connect(process.env.MONGO_URL);
 
     let dbName = process.env.MONGO_URL;
-    dbName = dbName.split("/")[3];
+    dbName = dbName.split("/")[2].slice(0, 7);
 
     localLogger.info(
       `Server connected to MongoDB Database "${dbName}" through ${mongoose.connection.host}`

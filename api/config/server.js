@@ -1,6 +1,6 @@
+import dotenv from "dotenv";
 import app from "./../app.js";
 import connectDB from "./db.js";
-import dotenv from "dotenv";
 import localLogger from "../utils/localLogger.js";
 import { startMetricsServer } from "./../utils/localMetrics.js";
 
