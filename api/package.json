@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon ./config/server.js",
-    "start": "node ./config/server.js"
+    "start": "node ./config/server.js",
+    "build": "npm i"
   },
-  "author": "muhammed abdulhakeem",
+  "author": "MERNify Development Team",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
