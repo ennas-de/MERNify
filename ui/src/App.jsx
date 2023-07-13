@@ -12,7 +12,7 @@ import Profile from "./pages/dashboard/Profile";
 import EditProfile from "./components/profile/EditProfile";
 import Post from "./pages/dashboard/Post";
 import EditPost from "./components/post/EditPost";
-import AddPost from "./components/post/AddPOst";
+import AddPost from "./components/post/AddPost";
 
 import "./App.css";
 
