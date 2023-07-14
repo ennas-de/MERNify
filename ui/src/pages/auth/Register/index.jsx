@@ -35,12 +35,12 @@ const Register = () => {
       status === "successful"
     ) {
       toast.success(message);
-      const hasRedirected = localStorage.getItem("hasRedirected");
-      if (!hasRedirected) {
-        window.location.replace("/user/login");
-        // navigate("/user/login");  // not working, why?
-        localStorage.setItem("hasRedirected", true);
-      }
+      // const hasRedirected = localStorage.getItem("hasRedirected");
+      // if (!hasRedirected) {
+      //   window.location.replace("/user/login");
+      navigate("/user/login"); // not working, why?
+      //   localStorage.setItem("hasRedirected", true);
+      // }
     }
 
     return () => {

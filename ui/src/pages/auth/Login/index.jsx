@@ -33,12 +33,12 @@ const Login = () => {
   // default functions
   useEffect(() => {
     if (user) {
-      const hasRedirected = localStorage.getItem("hasRedirected");
-      if (!hasRedirected) {
-        // window.location.replace("/dashboard")
-        navigate("/dashboard");
-        localStorage.setItem("hasRedirected", true);
-      }
+      // const hasRedirected = localStorage.getItem("hasRedirected");
+      // if (!hasRedirected) {
+      // window.location.replace("/dashboard")
+      navigate("/dashboard");
+      // localStorage.setItem("hasRedirected", true);
+      // }
     } else {
       // check if user tokens are in localStorage
       access_token = getAccessToken();
