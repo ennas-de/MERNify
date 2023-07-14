@@ -61,21 +61,21 @@ app.get("/metrics", async (req, res) => {
   }
 });
 
-app.get("/", () => {
-  res.send({
+app.get("/", (req, res) => {
+  return res.send({
     status: "ok",
     message: "Welcome to the MERNify server",
   });
 });
-app.get("/api", () => {
-  res.send({
+app.get("/api", (req, res) => {
+  return res.send({
     status: "ok",
     message:
       "Please do well to check out our UI through 'http://mernify.netlify.app'. Thanks.",
   });
 });
-app.get("/api/v1", () => {
-  res.send({
+app.get("/api/v1", (req, res) => {
+  return res.send({
     status: "ok",
     message: "Welcome to the V1 route for the MERNify project. Happy Creating.",
   });
