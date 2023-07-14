@@ -35,7 +35,8 @@ const Login = () => {
     if (user) {
       const hasRedirected = localStorage.getItem("hasRedirected");
       if (!hasRedirected) {
-        navigate("/dashboard");
+        window.location.replace("/dashboard");
+        // navigate("/dashboard");
         localStorage.setItem("hasRedirected", true);
       }
     } else {

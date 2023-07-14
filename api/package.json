@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon ./config/server.js",
-    "start": "node ./config/server.js",
+    "start": "nodemon ./config/server.js",
     "build": "npm i"
   },
   "author": "MERNify Development Team",
