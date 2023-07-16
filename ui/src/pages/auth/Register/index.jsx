@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { registerUser } from "../../../redux/features/auth/authActions";
 import { clearMessage } from "../../../redux/features/auth/authSlice";
 
-import "./Register.css";
 
 const Register = () => {
   // hooks
@@ -70,74 +69,78 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2 className="heading">Register</h2>
-      <form onSubmit={handleRegister} className="mt-9">
-        <input
-          type="text"
-          value={firstname}
-          className="input"
-          placeholder="firstname..."
-          name={firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-        <br />
+    <div className="auth-container">
+      <div className="auth-bg">
+        <h2 className="auth-heading">Register</h2>
+        <form onSubmit={handleRegister} className="mt-9">
+          <span className="label">Firstname</span>
+          <input
+            type="text"
+            value={firstname}
+            className="input mb-6 !mt-2"
+            placeholder="firstname..."
+            name={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
+          />
+          
+          <span className="label">Lastname</span>
+          <input
+            type="text"
+            value={lastname}
+            className="input mb-6 !mt-2"
+            placeholder="lastname..."
+            name={lastname}
+            onChange={(e) => setLastname(e.target.value)}
+          />
+          
+          <span className="label">USERNAME</span>
+          <input
+            type="text"
+            value={username}
+            className="input mb-6 !mt-2"
+            placeholder="username..."
+            name={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          
+          <span className="label">EMAIL</span>
+          <input
+            type="email"
+            value={email}
+            className="input mb-6 !mt-2"
+            placeholder="email..."
+            name={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          
+          <span className="label">Password</span>
+          <input
+            type="password"
+            value={password}
+            className="input mb-6 !mt-2"
+            placeholder="password..."
+            name={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          
+          <span className="label">Confirm Password</span>
+          <input
+            type="password"
+            value={confirmPassword}
+            className="input mb-6 !mt-2"
+            placeholder="confirm password..."
+            name={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          
+          <p className="auth-question">
+            Already a member? <Link to="/user/login">Login</Link>
+          </p>
 
-        <input
-          type="text"
-          value={lastname}
-          className="input"
-          placeholder="lastname..."
-          name={lastname}
-          onChange={(e) => setLastname(e.target.value)}
-        />
-        <br />
-
-        <input
-          type="text"
-          value={username}
-          className="input"
-          placeholder="username..."
-          name={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
-
-        <input
-          type="email"
-          value={email}
-          className="input"
-          placeholder="email..."
-          name={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-
-        <input
-          type="password"
-          value={password}
-          className="input"
-          placeholder="password..."
-          name={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-
-        <input
-          type="password"
-          value={confirmPassword}
-          className="input"
-          placeholder="confirm password..."
-          name={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <br />
-
-        <button className="button">Register</button>
-      </form>
-      <p className="mt-2">
-        Already a member? <Link to="/user/login">Login</Link>
-      </p>
+          <button className="button">Register</button>
+        </form>
+        
+      </div>
     </div>
   );
 };

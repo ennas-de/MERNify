@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import  { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -9,8 +9,6 @@ import {
 } from "../../../redux/features/auth/authActions";
 import { getAccessToken, getRefreshToken } from "../../../utils/token.utils";
 import { clearMessage } from "../../../redux/features/auth/authSlice";
-
-import "./Login.css";
 
 const Login = () => {
   // hooks
@@ -81,36 +79,42 @@ const Login = () => {
       dispatch(loginUser({ loginDetail, password }));
 
       console.log(`Log in request sent to server...`);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  console.log('login');
+
   return (
-    <div>
-      <h2 className="heading">Login</h2>
-      <form onSubmit={handleLogin} className="mt-9">
-        <input
-          type="text"
-          value={loginDetail}
-          className="input"
-          placeholder="username or email..."
-          onChange={(e) => setLoginDetail(e.target.value)}
-        />
-        <br />
+    <div className="auth-container">
+      <div className="auth-bg">
+        <h2 className="auth-heading">Login</h2>
+        <form onSubmit={handleLogin} className="mt-9">
+          <span className="label">USERNAME OR EMAIL</span>
+          <input
+            type="text"
+            value={loginDetail}
+            className="input mb-6 !mt-2"
+            placeholder="username or email..."
+            onChange={(e) => setLoginDetail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          value={password}
-          className="input"
-          placeholder="password..."
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
+          <span className="label">PASSWORD</span>
+          <input
+            type="password"
+            value={password}
+            className="input mb-6 !mt-2"
+            placeholder="password..."
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button className="button">Login</button>
-      </form>
-      <p className="mt-2">
-        No yet a member? <Link to="/user/register">Register</Link>
-      </p>
+          <p className="auth-question">
+            Not yet a member? <Link to="/user/register">Register</Link>
+          </p>
+          <button className="button">Login</button>
+        </form>
+      </div>
     </div>
   );
 };

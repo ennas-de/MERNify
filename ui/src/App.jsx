@@ -17,6 +17,7 @@ import AddPost from "./components/post/AddPOst";
 import "./App.css";
 
 function App() {
+  console.log('hello');
   return (
     <div className="App">
       <div className="body">
