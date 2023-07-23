@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../../../redux/features/user/userActions";
 import { Link, generatePath } from "react-router-dom";
 
-import "./EditProfile.css";
 
 const EditProfile = () => {
   // hooks
@@ -58,52 +57,51 @@ const EditProfile = () => {
 
   return (
     <div>
-      <h1>Edit Profile Page</h1>
       {loading ? (
         <div>
-          <p>Loading profile...</p>
+          {/* <p>Loading profile...</p> */}
         </div>
       ) : (
-        <div className="mt-9">
-          <h2 className="heading">Update your details</h2>
+        <div className="auth-bg !mt-9">
+          <h2 className="auth-heading !capitalize pb-5">Update your details</h2>
           <form onSubmit={handleUpdateUser}>
+            <span className="label">firstname</span>
             <input
               type="text"
               name="firstname"
               value={firstname}
-              className="input"
+              className="input mb-4 !mt-2"
               onChange={(e) => setFirstname(e.target.value)}
             />
-            <br />
+            <span className="label">lastname</span>
             <input
               type="text"
               name="lastname"
               value={lastname}
-              className="input"
+              className="input mb-4 !mt-2"
               onChange={(e) => setLastname(e.target.value)}
             />
-            <br />
+            <span className="label">username</span>
             <input
               type="text"
               name="username"
               value={username}
-              className="input"
+              className="input mb-4 !mt-2"
               onChange={(e) => setUsername(e.target.value)}
             />
-            <br />
+            <span className="label">email</span>
             <input
               type="email"
               name="email"
               value={email}
-              className="input"
+              className="input mb-4 !mt-2"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <br />
-            <button className="button">Update Profile</button>
+            <div className="flex justify-between items-center pt-2">
+              <button className="button">Update Profile</button>
+              <Link to={profilePath}>Go back to Profile</Link>
+            </div>
           </form>
-          <div className="mt-9">
-            <Link to={profilePath}>Back to Profile</Link>
-          </div>
         </div>
       )}
     </div>

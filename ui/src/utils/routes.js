@@ -71,7 +71,7 @@ import Post from "../pages/dashboard/Post";
         {
           name: "register",
           path: "/register",
-          element: <Register />
+          element: 'Register'
         }
       ]
     }

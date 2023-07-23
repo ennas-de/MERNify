@@ -14,7 +14,6 @@ import Post from "./pages/dashboard/Post";
 import EditPost from "./components/post/EditPost";
 import AddPost from "./components/post/AddPOst";
 
-import "./App.css";
 
 function App() {
   console.log('hello');

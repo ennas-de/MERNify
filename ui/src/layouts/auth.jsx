@@ -1,18 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import routes from "./../utils/routes";
+import { Outlet } from "react-router-dom";
+
 
 const Auth = () => {
   return (
     <div>
-      <Routes>
-        {routes.map(
-          ({ layout, pages }) =>
-            layout === "auth" &&
-            pages.map(({ path, element }) => (
-              <Route exact path={path} element={element} />
-            ))
-        )}
-      </Routes>
+      <Outlet />
     </div>
   );
 };

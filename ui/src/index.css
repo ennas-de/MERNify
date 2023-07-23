@@ -22,9 +22,9 @@ body {
 
 /* Style the content */
 .content {
-  background-color: #ddd;
+  background-color: #ebebeb;
   padding: 10px;
-  height: 65vh; /* Should be removed. Only for demonstration */
+  height: 85vh; /* Should be removed. Only for demonstration */
 }
 
 /* do not delete */
@@ -126,7 +126,7 @@ body {
 }
 
 .navbar-logo{
-    color: #e74c3c;
+    color: #000000;
     font-family: 'Cinzel', serif;
     font-weight: 300;
     font-size: 30px;
@@ -161,10 +161,34 @@ body {
   text-decoration: none;
   text-transform: capitalize;
 }
-/* Style the footer */
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.user-profile p {
+  margin: 4px 0;
+}
+
+.profile-label {
+  display: inline-block;
+  min-width: 100px; /* Adjust this width as needed to ensure alignment */
+}
+
+.value {
+  display: inline-block;
+  font-weight: bold;
+}
+
+
 .footer {
-  background-color: #f1f1f1;
-  padding: 10px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
 }
 
 @media only screen and (max-width: 600px) {

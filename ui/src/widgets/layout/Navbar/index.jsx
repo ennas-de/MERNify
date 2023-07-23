@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../../redux/features/auth/authSlice";
 import { persistor } from "./../../../redux/app/store";
+// import { GiHamburgerMenu } from 'react-icons/gi'
+// import { useState } from "react";
 
 
-const Navbar = ({ routes }) => {
-  const params = useParams(); // Get the route parameters
+const Navbar = () => {
+  // const [nav, setNav] = useState(false)
   const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -21,31 +23,33 @@ const Navbar = ({ routes }) => {
     <>
       <div className="navbar">
         <div className="nav-container">
-          <div className="navbar-logo">MERN<span>ify</span></div>
+          <div className="navbar-logo">MERNify</div>
+          {/* <div className="block md:hidden" onClick={() => setNav(!nav)}>
+            <GiHamburgerMenu size={20}/>
+          </div> */}
           <div className="nav-elements">
-            {routes.map(({ layout, pages }, key) => (
-              <ul key={key}>
-                {pages.map(({ name, path }) => {
-                  const dynamicPath = path.replace(
-                    ":userid",
-                    params.userId || user._id
-                  );
-                  return (
-                    <li key={name}>
-                      <NavLink to={`/${layout}${dynamicPath}`}>{name}</NavLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            ))}
+            <ul>
+              <li >
+                <NavLink to={`/`}>Home</NavLink>
+              </li>
+              <li >
+                <NavLink to={`/dashboard/posts/:userId`}>Posts</NavLink>
+              </li>
+              <li >
+                <NavLink to={`/dashboard/profile/:userId`}>Profile</NavLink>
+              </li>
+              <li>
+                <div className="navbar__extra">
+                  {user && (
+                    <Link to="/" onClick={handleLogout}>
+                      Log out
+                    </Link>
+                  )}
+                </div>
+              </li>
+            </ul>
           </div>
-          <div className="navbar__extra">
-            {user && (
-              <Link to="/" onClick={handleLogout}>
-                Log out
-              </Link>
-            )}
-          </div>
+          
         </div>
       </div>
     </>
