@@ -24,7 +24,7 @@ body {
 .content {
   background-color: #ebebeb;
   padding: 10px;
-  height: 85vh; /* Should be removed. Only for demonstration */
+  height: 90vh; /* Should be removed. Only for demonstration */
 }
 
 /* do not delete */
@@ -182,13 +182,29 @@ body {
   font-weight: bold;
 }
 
+.post-card {
+  
+  padding: 20px;
+  border-radius: 6px;
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 
 .footer {
+  height: 35px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   position: fixed;
   width: 100%;
   left: 0;
   bottom: 0;
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 @media only screen and (max-width: 600px) {

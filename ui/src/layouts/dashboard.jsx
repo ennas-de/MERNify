@@ -25,12 +25,12 @@ const Dashboard = () => {
   let dashRoutes = routes.filter((route) => route.layout === "dashboard");
 
   return (
-    <div>
+    <div className="h-screen">
       <header className="topnav">
         <Navbar routes={dashRoutes} />
       </header>
 
-      <main className="content">
+      <main className="content overflow-y-scroll">
         <Outlet />
       </main>
 

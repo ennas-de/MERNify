@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { generatePath, useParams, Link } from "react-router-dom";
 import { deleteUser, getUser } from "../../../redux/features/user/userActions";
@@ -38,7 +38,7 @@ const Profile = () => {
           {/* <p>Loading profile...</p> */}
         </div>
       ) : (
-        <div className="auth-bg !mt-9">
+        <div className="auth-bg !mt-24">
           <h2 className="auth-heading !capitalize pb-5">Your Profile</h2>
           {userProfile && (
             <div key={userProfile._id} className="user-profile">

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { generatePath, Link } from "react-router-dom";
 import { createPost } from "../../../redux/features/post/postActions";
 
-import "./AddPost.css";
 
 const AddPost = () => {
   // hooks
@@ -41,38 +40,42 @@ const AddPost = () => {
           <p>Loading posts...</p>
         </div>
       ) : (
-        <div>
-          <h2 className="heading">Add New Post</h2>
+        <div className="auth-bg !mt-20">
+          <h2 className="auth-heading">Add New Post</h2>
 
           <div>
             <form
               onSubmit={handleCreatePost}
               style={{ alignItems: "center" }}
               className="mt-4">
+                <span className="label">title</span>
               <input
                 type="text"
                 name="title"
                 value={title}
-                className="input"
+                className="input mb-4 !mt-2"
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter a title..."
               />
-              <br />
+              <span className="label">content</span>
               <input
                 type="text"
                 name="body"
                 value={body}
-                className="input"
+                className="input mb-4 !mt-2"
                 onChange={(e) => setBody(e.target.value)}
                 placeholder="Enter some contents..."
               />
               <br />
 
-              <button className="button">Create Post</button>
+              <div className="flex justify-between items-center">
+                <button className="button">Create Post</button>
+                <div className="">
+                  <Link to={`${postPath}/${userId}`} >Go to Posts</Link>
+                </div>
+              </div>
             </form>
-            <div className="mt-9">
-              <Link to={`${postPath}/${userId}`}>Posts</Link>
-            </div>
+            
           </div>
         </div>
       )}

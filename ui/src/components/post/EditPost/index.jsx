@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { generatePath, useParams, Link } from "react-router-dom";
 import { updatePost, getPost } from "../../../redux/features/post/postActions";
 
-import "./EditPost.css";
 
 const EditPost = () => {
   // hooks
@@ -62,7 +61,7 @@ const EditPost = () => {
           <p>Loading posts...</p>
         </div>
       ) : (
-        <div>
+        <div className="auth-bg !mt-20">
           <h2 className="heading">Edit Post</h2>
           {post && (
             <div>
@@ -70,28 +69,31 @@ const EditPost = () => {
                 onSubmit={handleUpdatePost}
                 style={{ alignItems: "center" }}
                 className="mt-4">
+                  <span className="label">title</span>
                 <input
                   type="text"
                   name="title"
                   value={title}
-                  className="input"
+                  className="input mb-4 !mt-2"
                   onChange={(e) => setTitle(e.target.value)}
                 />
-                <br />
+                <span className="label">content</span>
                 <input
                   type="text"
                   name="body"
                   value={body}
-                  className="input"
+                  className="input mb-4 !mt-2"
                   onChange={(e) => setBody(e.target.value)}
                 />
                 <br />
 
+                <div className="flex justify-between items-center">
                 <button className="button">Update Post</button>
+                <div>
+                  <Link to={`${postPath}/${userId}`}>Go to Posts</Link>
+                </div>  
+                </div>
               </form>
-              <div className="mt-9">
-                <Link to={`${postPath}/${userId}`}>Posts</Link>
-              </div>
             </div>
             // </div>
           )}

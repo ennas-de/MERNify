@@ -99,23 +99,24 @@ const Post = () => {
   };
 
   return (
-    <div>
-      <h2 className="heading">Post Component</h2>
-      <div className="mb-4">
+    <div className="w-[70%] mx-auto">
+      <h2 className="auth-heading mt-2">Your Posts</h2>
+      <div className="mb-4 auth-bg !p-8 !bg-transparent !w-[800px]">
         <input
           type="text"
           placeholder="Search..."
           value={searchQuery}
-          className="input"
+          className="input outline"
           onChange={handleInputChange}
         />
-        <button className="button" onClick={handleSearch}>
+        <button className="button my-3" onClick={handleSearch}>
           Search
         </button>
-      </div>
-      <Link className="button" to="/dashboard/posts/add">
+        <Link className="button" to="/dashboard/posts/add">
         Add New Post
       </Link>
+      </div>
+      
       <hr className="mt-5" />
       {loading ? (
         <p>Loading posts...</p>
@@ -124,24 +125,23 @@ const Post = () => {
       ) : (
         // <p>posts</p>
         posts.map((post) => (
-          <div key={post._id} className="mt-5 pb-5">
+          <div key={post._id} className="mt-5 post-card bg-gray-50">
             <div className="mt-2">
-              <h3>Title: {post.title}</h3>
-              <p>Content: {post.body}</p>
-              <p>Author: {post.author}</p>
-              <p>Posted Date: {formatPostedDate(post.createdAt)}</p>
+              <h3 className="text-3xl font-bold">{post.title}</h3>
+              <p>{post.body}</p>
+              <p className="text-gray-700 text-sm mt-4">Author: {post.author}</p>
+              <p className="text-gray-700 text-sm">Date Posted: {formatPostedDate(post.createdAt)}</p>
             </div>
-            <div className="mt-3 mb-3">
+            <div className="mt-3 mb-3 flex gap-3 items-center pt-2 !border-0">
               <Link className="button" to={`/dashboard/posts/edit/${post._id}`}>
                 Edit Post
               </Link>
               <button
-                className="button"
+                className=""
                 onClick={() => handleDeletePost(post._id)}>
                 Delete Post
               </button>
             </div>
-            <hr />
           </div>
         ))
       )}
